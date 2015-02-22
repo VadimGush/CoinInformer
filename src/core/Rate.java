@@ -20,7 +20,7 @@ import java.util.List;
 
 public class Rate {
 
-    private static String[][] history = new String[37][5];
+    private static List<String[]> history = new ArrayList<String[]>();
 
     private static String data = ""; // data from page
 
@@ -92,31 +92,35 @@ public class Rate {
 
             // Read information from string
             for (int counter = 0; counter < line.split("\\[").length - 2; counter++) {
-                String stage;
 
-                stage = line.split("\\[")[2 + counter];
-
-                StringBuffer sb = new StringBuffer(stage);
+                StringBuffer sb = new StringBuffer(line.split("\\[")[2 + counter]);
                 sb.deleteCharAt(sb.length() - 1);
                 sb.deleteCharAt(sb.length() - 1);
-
                 if (counter == line.split("\\[").length - 3) {
                     sb.delete(sb.length() - 8, sb.length());
                 }
-
+                String stage;
                 stage = sb.toString();
 
-                System.out.println(stage);
-
-                history[counter][0] = stage.split("\\,")[0]; // Time
-                history[counter][1] = stage.split("\\,")[1]; // Min. price
-                history[counter][2] = stage.split("\\,")[2]; // Price 1
-                history[counter][3] = stage.split("\\,")[3]; // Price 2
-                history[counter][4] = stage.split("\\,")[4]; // Max. price
+                // Save information
+                history.add(new String[]{
+                        stage.split("\\,")[0], // Time
+                        stage.split("\\,")[1], // Min. price
+                        stage.split("\\,")[2], // Price 1
+                        stage.split("\\,")[3], // Price 2
+                        stage.split("\\,")[4]}); // Max Price
             }
 
-            System.out.println();
+            System.out.println(history.size());
 
+            for (int counter = 0; counter < history.size(); counter++) {
+                Graphic.addValueMin(counter, history.get(counter)[1]);
+                Graphic.addValueMax(counter, history.get(counter)[4]);
+            }
+
+            history = new ArrayList<String[]>();
+
+            // Add history to graphic
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

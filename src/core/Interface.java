@@ -235,6 +235,8 @@ public class Interface extends JFrame{
             if (lastValueCompare > newValue) last.setText("<html><font color=#008000>+" + (lastValueCompare / (newValue / 100) - 100 + "%</font></html>"));
             if (lastValueCompare == newValue) last.setText("<html>0%</html>");
         }
+
+        graphPanel.updateUI();
     }
 
     private void openWebPage(URI url) {

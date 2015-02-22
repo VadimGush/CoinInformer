@@ -14,33 +14,48 @@ import java.util.Random;
 
 public class Graphic extends JPanel {
 
-    private static Random random = new Random();
-
-    private static float[] rate = new float[37];
-    private static float width = 20;
-
-    private static float size = 100;
-    private static float minus = 113;
+    private static float[] min = new float[40];
+    private static float[] max = new float[40];
 
     public void paint(Graphics g) {
         super.paint(g);
         g.drawString("", 5, 15);
 
+        // Draw min
         g.setColor(Color.red);
-        g.drawLine(0, 100, 500, 100);
+        for (int counter = 0; counter < min.length - 1; counter++) {
+            int x1 = counter * (500 / min.length);
+            int x2 = (counter + 1) * (500 / min.length);
 
-        g.setColor(Color.green);
-        for (int counter = 0; counter < rate.length; counter++) {
-            //g.drawLine();
+            System.out.println((min[counter] - (int)min[counter]) * 25);
+
+            int y1 = (int)-( (min[counter] - (int)min[counter]) * 50 );
+            int y2 = (int)-( (min[counter + 1] - (int)min[counter + 1]) * 50 );
+
+            if (min[counter] != 0 & min[counter + 1] != 0) g.drawLine(x1 + 40, y1 + 75, x2 + 40, y2 + 75);
         }
 
+        // Draw max
+        g.setColor(new Color(0, 100, 0));
+        for (int counter = 0; counter < max.length - 1; counter++) {
+            int x1 = counter * (500 / max.length);
+            int x2 = (counter + 1) * (500 / max.length);
+
+            System.out.println((max[counter] - (int)max[counter]) * 25);
+
+            int y1 = (int)-( (max[counter] - (int)max[counter]) * 50 );
+            int y2 = (int)-( (max[counter + 1] - (int)max[counter + 1]) * 50 );
+
+            if (max[counter] != 0 & max[counter + 1] != 0) g.drawLine(x1 + 40, y1 + 75, x2 + 40, y2 + 75);
+        }
     }
 
-    public static void addNew(float value) {
-        for (int counter = 0; counter < 49; counter++) {
-            rate[counter] = rate[counter + 1];
-        }
-        rate[49] = value;
+    public static void addValueMin(int id, String value) {
+        min[id] = Float.parseFloat(value);
+    }
+
+    public static void addValueMax(int id, String value) {
+        max[id] = Float.parseFloat(value);
     }
 
 }
