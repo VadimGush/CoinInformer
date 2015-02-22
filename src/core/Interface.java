@@ -17,7 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 
-public class GUI extends JFrame{
+public class Interface extends JFrame{
     private JTextField coins;
     private JTextField price;
     private JButton btcButton;
@@ -46,7 +46,7 @@ public class GUI extends JFrame{
     public JPanel graphPanel;
     public JToolBar mainToolBar;
 
-    public GUI() {
+    public Interface() {
         super("CoinInformer");
 
         setDefaultLookAndFeelDecorated(true);

@@ -36,30 +36,32 @@ public class Rate {
 
     public static void connect() {
 
+        // Loading last rate information
         try {
 
-            String webPage = "https://btc-e.com/api/3/ticker/" + v1 + "_" + v2;
-
-            URL url = new URL(webPage);
+            // Creating connection
+            URL url = new URL("https://btc-e.com/api/3/ticker/" + v1 + "_" + v2);
             URLConnection connection  = url.openConnection();
 
             InputStreamReader isr = new InputStreamReader(connection.getInputStream());
             BufferedReader br = new BufferedReader(isr);
 
+            // Read first string from page
             StringBuffer sb = new StringBuffer(br.readLine());
             sb.deleteCharAt(sb.length() - 1);
             sb.deleteCharAt(sb.length() - 1);
             data = sb.toString();
 
-            String[] one = data.split("\\{");
-            String[] two = one[2].split("\\,");
+            // Loading rate from first string
+            String[] info = data.split("\\{")[2].split("\\,");
 
-            hight = two[0].split("\\:")[1];
-            low = two[1].split("\\:")[1];
-            buy = two[6].split("\\:")[1];
-            sell = two[7].split("\\:")[1];
-            last = two[5].split("\\:")[1];
-            time = two[8].split("\\:")[1];
+            // Read information
+            hight = info[0].split("\\:")[1];
+            low = info[1].split("\\:")[1];
+            buy = info[6].split("\\:")[1];
+            sell = info[7].split("\\:")[1];
+            last = info[5].split("\\:")[1];
+            time = info[8].split("\\:")[1];
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -67,26 +69,28 @@ public class Rate {
             e.printStackTrace();
         }
 
-        // History
+        // Read history from main page
 
         try {
 
-            String webPage = "https://btc-e.com/exchange/" + v1 + "_" + v2;
-
-            URL url = new URL(webPage);
+            // Create connection
+            URL url = new URL("https://btc-e.com/exchange/" + v1 + "_" + v2);
             URLConnection connection  = url.openConnection();
 
             InputStreamReader isr = new InputStreamReader(connection.getInputStream());
             BufferedReader br = new BufferedReader(isr);
 
-            List<String> file = new ArrayList<String>();
+            // Read data from page
+            List<String> page = new ArrayList<String>();
             String line;
             while ((line = br.readLine()) != null) {
-                file.add(line);
+                page.add(line);
             }
 
-            line = file.get(66);
+            // Get string №66
+            line = page.get(66);
 
+            // Read information from string
             for (int counter = 0; counter < line.split("\\[").length - 2; counter++) {
                 String stage = "";
 
