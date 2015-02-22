@@ -6,3 +6,6 @@ A handy tool for trading on the Exchange. Fast calculation of profit and loss, c
 
 <b>Official site: </b> http://coininformer.sourceforge.net<br>
 <b>Download: </b> https://sourceforge.net/projects/coininformer/files/latest/download
+
+<hr>
+<b>Author: </b> Gush Vadim Vadimovich
