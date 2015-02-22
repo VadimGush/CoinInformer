@@ -92,7 +92,7 @@ public class Rate {
 
             // Read information from string
             for (int counter = 0; counter < line.split("\\[").length - 2; counter++) {
-                String stage = "";
+                String stage;
 
                 stage = line.split("\\[")[2 + counter];
 
