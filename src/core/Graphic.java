@@ -10,43 +10,69 @@ Last update: 19.02.2015
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
 
 public class Graphic extends JPanel {
 
     private static float[] min = new float[40];
-    private static float[] max = new float[40];
+    private static float[] max = new float[min.length];
+    private static String[] time = new String[max.length];
+
+    private static float minValue = 1000;
+    private static float maxValue;
+
+    private static float size = 35;
 
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawString("", 5, 15);
 
-        // Draw min
-        g.setColor(Color.red);
-        for (int counter = 0; counter < min.length - 1; counter++) {
-            int x1 = counter * (500 / min.length);
-            int x2 = (counter + 1) * (500 / min.length);
-
-            System.out.println((min[counter] - (int)min[counter]) * 25);
-
-            int y1 = (int)-( (min[counter] - (int)min[counter]) * 50 );
-            int y2 = (int)-( (min[counter + 1] - (int)min[counter + 1]) * 50 );
-
-            if (min[counter] != 0 & min[counter + 1] != 0) g.drawLine(x1 + 40, y1 + 75, x2 + 40, y2 + 75);
+        // Search minimum value and maximum value
+        for (int counter = 0; counter < min.length; counter++) {
+            // Search minimum value and maximum value
+            if (min[counter] != 0) {
+                if (minValue > min[counter]) minValue = min[counter];
+                if (maxValue < min[counter]) maxValue = min[counter];
+            }
+            if (max[counter] != 0) {
+                if (minValue > max[counter]) minValue = max[counter];
+                if (maxValue < max[counter]) maxValue = max[counter];
+            }
         }
 
-        // Draw max
-        g.setColor(new Color(0, 100, 0));
-        for (int counter = 0; counter < max.length - 1; counter++) {
-            int x1 = counter * (500 / max.length);
-            int x2 = (counter + 1) * (500 / max.length);
+        // Draw graph
+        for (int counter = 0; counter < min.length - 1; counter++) {
+            // Counting coordinates
+            int x1 = counter * (500 / min.length);
+            int x2 = (counter + 1) * (500 / min.length);
+            int y1 = (int)-( (min[counter] - minValue) * size );
+            int y2 = (int)-( (min[counter + 1] - minValue) * size );
 
-            System.out.println((max[counter] - (int)max[counter]) * 25);
+            // Draw grid
+            g.setColor(new Color(195, 195, 195));
+            g.drawLine(x1 + 5, 0, x1 + 5, 125);
 
-            int y1 = (int)-( (max[counter] - (int)max[counter]) * 50 );
-            int y2 = (int)-( (max[counter + 1] - (int)max[counter + 1]) * 50 );
+            // Draw min. values
+            if (min[counter] != 0 & min[counter + 1] != 0) {
+                g.setColor(Color.red);
+                g.drawLine(x1 + 5, y1 + 125, x2 + 5, y2 + 125);
+            }
 
-            if (max[counter] != 0 & max[counter + 1] != 0) g.drawLine(x1 + 40, y1 + 75, x2 + 40, y2 + 75);
+            // Counting coordinates
+            x1 = counter * (500 / max.length);
+            x2 = (counter + 1) * (500 / max.length);
+            y1 = (int)-( (max[counter] - minValue) * size );
+            y2 = (int)-( (max[counter + 1] - minValue) * size );
+
+            // Draw max. values
+            if (max[counter] != 0 & max[counter + 1] != 0) {
+                g.setColor(new Color(0, 100, 0));
+                g.drawLine(x1 + 5, y1 + 125, x2 + 5, y2 + 125);
+            }
+
+            // Print time
+            if (max[counter + 1] == 0 | counter == 0 | counter == max.length / 2) {
+                g.setColor(Color.BLACK);
+                g.drawString(time[counter] + "", x1 + 2, 140);
+            }
         }
     }
 
@@ -56,6 +82,10 @@ public class Graphic extends JPanel {
 
     public static void addValueMax(int id, String value) {
         max[id] = Float.parseFloat(value);
+    }
+
+    public static void addValueTime(int id, String value) {
+        time[id] = value;
     }
 
 }

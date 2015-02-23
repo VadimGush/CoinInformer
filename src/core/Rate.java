@@ -10,7 +10,6 @@ Last update: 19.02.2015
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -47,7 +46,7 @@ public class Rate {
             BufferedReader br = new BufferedReader(isr);
 
             // Read first string from page
-            StringBuffer sb = new StringBuffer(br.readLine());
+            StringBuilder sb = new StringBuilder(br.readLine());
             sb.deleteCharAt(sb.length() - 1);
             sb.deleteCharAt(sb.length() - 1);
             data = sb.toString();
@@ -93,7 +92,7 @@ public class Rate {
             // Read information from string
             for (int counter = 0; counter < line.split("\\[").length - 2; counter++) {
 
-                StringBuffer sb = new StringBuffer(line.split("\\[")[2 + counter]);
+                StringBuilder sb = new StringBuilder(line.split("\\[")[2 + counter]);
                 sb.deleteCharAt(sb.length() - 1);
                 sb.deleteCharAt(sb.length() - 1);
                 if (counter == line.split("\\[").length - 3) {
@@ -111,11 +110,10 @@ public class Rate {
                         stage.split("\\,")[4]}); // Max Price
             }
 
-            System.out.println(history.size());
-
             for (int counter = 0; counter < history.size(); counter++) {
                 Graphic.addValueMin(counter, history.get(counter)[1]);
                 Graphic.addValueMax(counter, history.get(counter)[4]);
+                Graphic.addValueTime(counter, history.get(counter)[0]);
             }
 
             history = new ArrayList<String[]>();
