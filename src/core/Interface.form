@@ -587,7 +587,7 @@
               <text value="Mode: "/>
             </properties>
           </component>
-          <component id="4ac3c" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+          <component id="4ac3c" class="javax.swing.JComboBox" binding="graphMode">
             <constraints/>
             <properties>
               <model>
@@ -603,6 +603,7 @@
           <component id="5fe38" class="javax.swing.JCheckBox" binding="labelsCheckBox" default-binding="true">
             <constraints/>
             <properties>
+              <selected value="true"/>
               <text value="Labels"/>
             </properties>
           </component>
@@ -613,6 +614,7 @@
           <component id="290a1" class="javax.swing.JCheckBox" binding="gridCheckBox" default-binding="true">
             <constraints/>
             <properties>
+              <selected value="true"/>
               <text value="Grid"/>
             </properties>
           </component>
