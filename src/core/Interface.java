@@ -45,6 +45,9 @@ public class Interface extends JFrame{
     private JLabel rateName;
     public JPanel graphPanel;
     public JToolBar mainToolBar;
+    public JComboBox comboBox1;
+    public JCheckBox labelsCheckBox;
+    public JCheckBox gridCheckBox;
 
     public Interface() {
         super("CoinInformer");
@@ -156,6 +159,7 @@ public class Interface extends JFrame{
         float lastV = Rate.getLast();
 
         Rate.connect();
+        graphPanel.updateUI();
 
         // Update GUI
 
@@ -182,9 +186,9 @@ public class Interface extends JFrame{
         else buyRate.setText("" + Rate.getBuy());
 
         if (!price.getText().isEmpty() && !coins.getText().isEmpty()) {
-            float newValue = 0; //курс введённый пользователем
-            float buyCompare = 0; //цена прибыли в рублях при покупке
-            float sellCompare = 0; //цена прибыли в рублях при продажи
+            float newValue; //курс введённый пользователем
+            float buyCompare; //цена прибыли в рублях при покупке
+            float sellCompare; //цена прибыли в рублях при продажи
 
             try { //если ввели буквы вместо цифр
                 buyCompare = Float.parseFloat(coins.getText()); //получаем coins введённые пользователем
@@ -235,8 +239,6 @@ public class Interface extends JFrame{
             if (lastValueCompare > newValue) last.setText("<html><font color=#008000>+" + (lastValueCompare / (newValue / 100) - 100 + "%</font></html>"));
             if (lastValueCompare == newValue) last.setText("<html>0%</html>");
         }
-
-        graphPanel.updateUI();
     }
 
     private void openWebPage(URI url) {

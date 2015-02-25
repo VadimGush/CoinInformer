@@ -110,6 +110,7 @@ public class Rate {
                         stage.split("\\,")[4]}); // Max Price
             }
 
+            Graphic.cleanHistory();
             for (int counter = 0; counter < history.size(); counter++) {
                 Graphic.addValueMin(counter, history.get(counter)[1]);
                 Graphic.addValueMax(counter, history.get(counter)[4]);

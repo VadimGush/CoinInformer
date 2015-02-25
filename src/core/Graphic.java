@@ -13,17 +13,20 @@ import java.awt.*;
 
 public class Graphic extends JPanel {
 
-    private static float[] min = new float[40];
+    private static float[] min = new float[50];
     private static float[] max = new float[min.length];
     private static String[] time = new String[max.length];
 
-    private static float minValue = 1000;
+    private static float minValue;
     private static float maxValue;
-
-    private static float size = 35;
+    private static float size;
 
     public void paint(Graphics g) {
         super.paint(g);
+
+        // Clear values
+        minValue = 100000;
+        maxValue = 0;
 
         // Search minimum value and maximum value
         for (int counter = 0; counter < min.length; counter++) {
@@ -37,6 +40,9 @@ public class Graphic extends JPanel {
                 if (maxValue < max[counter]) maxValue = max[counter];
             }
         }
+
+        // Counting graph size
+        size = 100 / (maxValue - minValue);
 
         // Draw graph
         for (int counter = 0; counter < min.length - 1; counter++) {
@@ -69,7 +75,7 @@ public class Graphic extends JPanel {
             }
 
             // Print time
-            if (max[counter + 1] == 0 | counter == 0 | counter == max.length / 2) {
+            if ((max[counter] != 0 & max[counter + 1] == 0) | counter == 0 | counter == max.length / 2) {
                 g.setColor(Color.BLACK);
                 g.drawString(time[counter] + "", x1 + 2, 140);
             }
@@ -82,6 +88,11 @@ public class Graphic extends JPanel {
 
     public static void addValueMax(int id, String value) {
         max[id] = Float.parseFloat(value);
+    }
+
+    public static void cleanHistory() {
+        min = new float[min.length];
+        max = new float[min.length];
     }
 
     public static void addValueTime(int id, String value) {
