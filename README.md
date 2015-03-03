@@ -1,4 +1,4 @@
-# CoinInformer 1.0.4
+# CoinInformer 1.0.5
 
 <img src="http://coininformer.sourceforge.net/data/preview.png">
 
