@@ -69,6 +69,14 @@ public class Interface extends JFrame{
     public JComboBox graphMode;
     public JCheckBox labelsCheckBox;
     public JCheckBox gridCheckBox;
+    public JComboBox languageBox;
+
+    public JLabel timeText;
+    public JLabel highText;
+    public JLabel lowText;
+    public JLabel buyText;
+    public JLabel sellText;
+    public JLabel lastText;
 
     public Interface() {
         super("CoinInformer");
@@ -155,7 +163,7 @@ public class Interface extends JFrame{
                 final ImageIcon icon = new ImageIcon("icon64.png");
 
                 String info = "<html><font size=+1>CoinInformer</font><br>" +
-                        "Version: 1.0.4<br><br>" +
+                        "Version: 1.0.5<br><br>" +
                         "Author: Gush Vadim Vadimovich<br>" +
                         "Contact: djuke.studio@gmail.com<br>" +
                         "Information: http://btc-e.com<br>" +
@@ -172,6 +180,15 @@ public class Interface extends JFrame{
         rateName.setText("<html><font size=+1>" + Rate.getV1().toUpperCase() + " - " + Rate.getV2().toUpperCase() + "</font> (BTC-E)</html>");
 
         // Get data
+
+        if (languageBox.getSelectedIndex() == 0) {
+            Language.setEnglish();
+            updateText();
+        }
+        if (languageBox.getSelectedIndex() == 1) {
+            Language.setRussian();
+            updateText();
+        }
 
         float hightV = Rate.getHight();
         float lowV = Rate.getLow();
@@ -281,5 +298,15 @@ public class Interface extends JFrame{
         graphPanel = new Graphic();
         graphPanel.setBackground(new Color(205, 205, 205));
         graphPanel.setForeground(Color.white);
+    }
+
+    private void updateText() {
+        buyText.setText(Language.getBuy() + ": ");
+        sellText.setText(Language.getSell() + ": ");
+        highText.setText(Language.getHigh() + ": ");
+        lowText.setText(Language.getLow() + ": ");
+
+        helpButton.setText(Language.getHelp());
+        donateButton.setText(Language.getDonate());
     }
 }

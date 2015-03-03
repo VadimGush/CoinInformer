@@ -113,6 +113,19 @@
               <text value="About"/>
             </properties>
           </component>
+          <component id="60832" class="javax.swing.JToolBar$Separator">
+            <constraints/>
+            <properties/>
+          </component>
+          <component id="67600" class="javax.swing.JComboBox" binding="languageBox">
+            <constraints/>
+            <properties>
+              <model>
+                <item value="English"/>
+                <item value="Русский"/>
+              </model>
+            </properties>
+          </component>
           <hspacer id="6c6e3">
             <constraints/>
           </hspacer>
@@ -416,7 +429,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="68c5e" class="javax.swing.JLabel">
+                  <component id="68c5e" class="javax.swing.JLabel" binding="timeText">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="4" anchor="8" fill="0" indent="0" use-parent-layout="false">
                         <preferred-size width="60" height="16"/>
@@ -437,7 +450,7 @@
                       <text value="Value"/>
                     </properties>
                   </component>
-                  <component id="79174" class="javax.swing.JLabel">
+                  <component id="79174" class="javax.swing.JLabel" binding="highText">
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                         <preferred-size width="60" height="16"/>
@@ -458,7 +471,7 @@
                       <text value="Value"/>
                     </properties>
                   </component>
-                  <component id="1e2e7" class="javax.swing.JLabel">
+                  <component id="1e2e7" class="javax.swing.JLabel" binding="lowText">
                     <constraints>
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                         <preferred-size width="60" height="16"/>
@@ -479,7 +492,7 @@
                       <text value="Value"/>
                     </properties>
                   </component>
-                  <component id="b8c97" class="javax.swing.JLabel">
+                  <component id="b8c97" class="javax.swing.JLabel" binding="buyText">
                     <constraints>
                       <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                         <preferred-size width="60" height="16"/>
@@ -500,7 +513,7 @@
                       <text value="Value"/>
                     </properties>
                   </component>
-                  <component id="c0123" class="javax.swing.JLabel">
+                  <component id="c0123" class="javax.swing.JLabel" binding="sellText">
                     <constraints>
                       <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                         <preferred-size width="60" height="16"/>
@@ -521,7 +534,7 @@
                       <text value="Value"/>
                     </properties>
                   </component>
-                  <component id="5c34d" class="javax.swing.JLabel">
+                  <component id="5c34d" class="javax.swing.JLabel" binding="lastText">
                     <constraints>
                       <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                         <preferred-size width="60" height="16"/>
@@ -562,7 +575,8 @@
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="-1" height="150"/>
+            <minimum-size width="400" height="150"/>
+            <preferred-size width="525" height="150"/>
           </grid>
         </constraints>
         <properties/>

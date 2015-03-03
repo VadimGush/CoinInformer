@@ -107,12 +107,18 @@ public class Graphic extends JPanel {
                 }
             }
 
-            // Print time
+            // Print text
             if (Main.inter.labelsCheckBox.isSelected()) {
                 if ((max[counter] != 0 & max[counter + 1] == 0) | counter == 0 | counter == max.length / 2) {
                     g.setColor(Color.BLACK);
                     g.drawString(time[counter] + "", x1 + 2, 140);
                 }
+                g.setColor(Color.BLACK);
+                g.drawString("Values: " + minValue + " - " + maxValue, 5, 15);
+                g.setColor(Color.red);
+                g.drawString("- Min", 225, 12);
+                g.setColor(new Color(0, 100, 0));
+                g.drawString("- Max", 255, 12);
             }
         }
     }

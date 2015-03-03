@@ -51,8 +51,8 @@ public class Rate {
     private static String last = "0";
     private static String time = "0";
 
-    private static String v1 = "ltc";
-    private static String v2 = "rur";
+    private static String v1 = "btc";
+    private static String v2 = "usd";
 
     public static void connect() {
 
